@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+    <head> <title> Homework </title> </head>
+    <body> 
+        <div>
+            <input type="radio" id="linearPercent" name="Percent" value="easy" />
+            <label for="linearPercent">Легкий </label>
+
+            <input type="radio" id="progressivePercent" name="Percent" value="hard" />
+            <label for="progressivePercent">Сложный</label>
+        </div>
+        <div> 
+            <p> 
+            Month
+            </p>
+            <input id ='month_range' type = 'range' min = '3' max = '36' value = '12' step ='3' >
+        </div>
+            <div> 
+                <p> 
+                Percent
+                </p>
+                <input id ='percent_range' type = 'range' min = '5' max = '15' value = '5' step ='5' >
+                <span id = 'percent_value'> 1 </span>
+            </div>
+            <div>
+                <p>
+                Money
+                </p>
+                <input id ='money_label' type = 'number' min = '10000' max ='100000000'  value = '100000'>
+            </div>
+            <div>
+                <h1>
+                    <span> INCOME: </span> <span id = 'income'> </span> 
+                </h1>
+                <h1>
+                    <span> REVENUE:  </span> <span id = 'revenue'> </span> 
+                </h1>
+            </div>
+    </body>
+
+
+    <script> 
+
+        function hardPercent(){return null;}
+
+                const K = 12;
+                function easyPercent(P, I, t){
+                            console.log(P, I, t)
+                            const result = (P*I*t/K)/100
+                            UpdateIncome(result)
+                            return result
+                        }
+
+                let  percent  =  10   
+                let  money    =  100000
+                let  months   =  3    
+
+                function UpdateIncome(income){
+                            document.getElementById('revenue').textContent = Number(income) + Number(money)
+                            document.getElementById('income').textContent = income}
+
+
+                let inputs = document.getElementsByTagName('input')
+                easyPercent(money, percent, months)
+                for (let i = 0; i < inputs.length; ++i){
+                            inputs[i].onchange = ()=> {
+                                        if (inputs[i].id == 'percent_range'){
+                                                    percent = inputs[i].value
+                                                }
+                                        if (inputs[i].id == 'month_range'){
+                                                    months = inputs[i].value
+                                                }
+                                        if (inputs[i].id == 'money_label'){
+                                                    if (inputs[i].value < 0){
+                                                                inpuits[i] = 0
+                                                            }
+                                                    money = inputs[i].value
+                                                }
+                                        let income = easyPercent(money, percent, months)
+                                    }
+                        }
+    </script>
+
+</html>
